@@ -5,20 +5,24 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## ERD
 
-* System dependencies
+![ERD Version 1](./public/images/ERD_version1.png)
 
-* Configuration
+- Ruby version
 
-* Database creation
+- System dependencies
 
-* Database initialization
+- Configuration
 
-* How to run the test suite
+- Database creation
 
-* Services (job queues, cache servers, search engines, etc.)
+- Database initialization
 
-* Deployment instructions
+- How to run the test suite
 
-* ...
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...
