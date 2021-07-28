@@ -8,6 +8,7 @@ Things you may want to cover:
 ## ERD
 
 ![ERD Version 1](./public/images/ERD_version1.png)
+![ERD Version 1](./public/images/ERD_version2.png)
 
 - Ruby version
 
