@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
-  resources :lists
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # Root route
+  root 'untitled#index'
+
+  # Devise Generated routes for users, assigned to custom controller "registrations"
+   scope :api, defaults: { format: :json } do
+    devise_for :users,  controllers: {
+      registrations: 'registrations',
+    }
+  end
+
+  scope :api, defaults: { format: :json } do
+    resources :lists
+  end
 end
+
+
