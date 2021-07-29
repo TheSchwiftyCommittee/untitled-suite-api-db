@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  # Root route
-  root 'untitled#index'
+  resources :lists
 
-  # Devise Generated routes for users, assigned to custom controller "registrations"
-   
-    devise_for :users,  controllers: {
-      registrations: 'registrations',
-    }
-
-    resources :lists
+  resource :users, only: [:create, :login]
+  post "/login", to: "users#login"
+  get "/auto_login", to: "user#auto_login"
 
 end
 
