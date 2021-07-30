@@ -7,10 +7,17 @@ Rails.application.routes.draw do
     get "/auto_login", to: "user#auto_login"
   end
 
-  scope '/admin' do
+  scope '/admins' do
     get "/user_index", to: "admins#user_index"
     delete "/delete_user", to: "admins#delete_user"
-    put"/assign_user", to: "admins#assign_user"
+  end
+
+  scope '/admin_directors' do
+    get "/user_index", to: "admin_directors#user_index"
+    delete "/delete_user", to: "admin_directors#delete_user"
+    delete "/delete_admin", to: "admin_directors#delete_admin"
+    put"/assign_admin", to: "admin_directors#assign_admin"
+    put"/unassign_admin", to: "admin_directors#unassign_admin"
   end
 
   resources :lists

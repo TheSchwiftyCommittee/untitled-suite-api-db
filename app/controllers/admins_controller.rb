@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
     
     before_action :authorized, only: [:auto_login]
-    before_action :check_admin, only: [:admin_index, :admin_delete_user, :admin_assign_user]
+    before_action :check_admin, only: [:user_index , :delete_user]
 
     # DISPLAY ALL USERS
     def user_index 
@@ -20,15 +20,7 @@ class AdminsController < ApplicationController
             end
     end
   
-    # ASSIGN USER
-    def assign_user
-        @user = User.find_by(email: params[:email])
-        @user.admin = true
-        @user.save
-        render json: {notice: "User was successfully assgined Admin." }
-    end
-
-    private
+     private
 
     # CHECK IF USER IS ADMIN
     def check_admin
