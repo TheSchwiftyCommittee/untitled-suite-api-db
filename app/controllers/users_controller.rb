@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         token = encode_token({user_id: @user.id})
         render json: {user: @user, token: token}
       else
-        render json: {error: "Invalid username or password"}
+        render json: {error: "Invalid username or password"}, status: 401
       end
     end
 
@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     def update
       @user = User.find_by(email: params[:email])
         if @user.update(user_params) 
-        render json: {notice: "User was successfully updated." }
+        render json: {notice: "User was successfully updated."}
       else
-        render json: {error: "User was not updated"}
+        render json: {error: "User was not updated"}, status: 401
       end
     end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         token = encode_token({user_id: @user.id})
         render json: {user: @user, token: token}
       else
-        render json: {error: "Invalid username or password"}
+        render json: {error: "Invalid username or password"}, status: 401
       end
     end
     
