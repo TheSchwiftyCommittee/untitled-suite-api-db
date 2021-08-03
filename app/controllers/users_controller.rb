@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     def update
       @user = User.find_by(email: params[:email])
         if @user.update(user_params) 
-        render json: {notice: "User was successfully updated." }
+        render json: {notice: "User was successfully updated."}
       else
         render json: {error: "User was not updated"}, status: 401
       end
