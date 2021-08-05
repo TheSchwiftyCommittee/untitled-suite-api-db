@@ -27,7 +27,7 @@ class AdminsController < ApplicationController
         @user = User.find_by(username: params[:username])
             if @user.admin == true 
             else 
-               render json: {error: 'You are not allowed to access this part of the site'}
+               render json: {error: 'You are not allowed to access this part of the site'}, status: 401
             end
     end
 end
