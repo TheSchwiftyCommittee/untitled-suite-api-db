@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resource :users, only: [:create, :login]
     post "/login", to: "users#login"
     put"/update", to: "users#update"
-    get "/auto_login", to: "user#auto_login"
+    get "/auto_login", to: "users#auto_login"
   end
 
   scope '/admins' do
