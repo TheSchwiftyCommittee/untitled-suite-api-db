@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :profiles
   scope '/users' do
     resource :users, only: [:create, :login]
     post "/login", to: "users#login"
