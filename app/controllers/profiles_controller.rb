@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authorized, only: [:auto_login]
-  before_action :set_profile, only: [:show, :update, :destroy]
+  before_action :set_profile, only: [:update]
 
   # GET /profiles
   def index
@@ -21,9 +21,9 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /profiles/1
+  # PATCH/PUT/profiles/1
   def update
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(id: params[:id])
     @profile = Profile.find_by(user_id: @user.id)
     if @profile.update(profile_params)
       @profile_data = {profile: @user.profile, avatar: url_for(@user.profile.avatar)}
@@ -41,6 +41,6 @@ class ProfilesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name)
+      params.require(:profile).permit(:first_name, :last_name, :avatar)
     end
 end
