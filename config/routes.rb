@@ -7,12 +7,12 @@ Rails.application.routes.draw do
     put"/update", to: "users#update"
     get "/auto_login", to: "users#auto_login"
   end
-
+  
   scope '/admins' do
     get "/user_index", to: "admins#user_index"
     delete "/delete_user", to: "admins#delete_user"
   end
-
+  
   scope '/admin_directors' do
     get "/user_index", to: "admin_directors#user_index"
     delete "/delete_user", to: "admin_directors#delete_user"
@@ -20,14 +20,10 @@ Rails.application.routes.draw do
     put"/assign_admin", to: "admin_directors#assign_admin"
     put"/unassign_admin", to: "admin_directors#unassign_admin"
   end
-
+  
   resources :lists
   resources :profiles
-
-  # scope '/profiles' do
-  #   put"/update_avatar/id", to: "profiles#update_avatar"
-  # end
-
+  resources :pricings
 end
 
 
