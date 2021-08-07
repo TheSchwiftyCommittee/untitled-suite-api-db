@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   resources :lists
   resources :profiles
 
+  # scope '/profiles' do
+  #   put"/update_avatar/id", to: "profiles#update_avatar"
+  # end
+
 end
 
 
