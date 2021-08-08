@@ -12,7 +12,7 @@ class PricingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pricing" do
     assert_difference('Pricing.count') do
-      post pricings_url, params: { pricing: { premium: @pricing.premium, profile_id: @pricing.profile_id } }, as: :json
+      post pricings_url, params: { pricing: { premium: @pricing.premium, user_id: @pricing.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class PricingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pricing" do
-    patch pricing_url(@pricing), params: { pricing: { premium: @pricing.premium, profile_id: @pricing.profile_id } }, as: :json
+    patch pricing_url(@pricing), params: { pricing: { premium: @pricing.premium, user_id: @pricing.user_id } }, as: :json
     assert_response 200
   end
 

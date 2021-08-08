@@ -2,8 +2,8 @@
 
 one:
   premium: false
-  profile: one
+  user: one
 
 two:
   premium: false
-  profile: two
+  user: two
