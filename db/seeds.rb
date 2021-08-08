@@ -23,53 +23,53 @@ user6 = User.create(username: "testuser3", email: "user3@test.com",  password: "
 # Pricing6 = Pricing.create(premium: false, user_id: 6)
 
 # Profiles
-# ricks_profile = Profile.new(
-#     first_name: "Rick",
-#     last_name: "Sanchez",
-#     user_id: user1.id)
+ricks_profile = Profile.new(
+    first_name: "Rick",
+    last_name: "Sanchez",
+    id: 1)
 
-# ricks_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_rick.jpg'), filename: 'test_avatar_rick.jpg', content_type: 'image/jpg')
-# ricks_profile.save
+ricks_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_rick.jpg'), filename: 'test_avatar_rick.jpg', content_type: 'image/jpg')
+ricks_profile.save
 
-# nathans_profile = Profile.new(
-#     first_name: "Nathan",
-#     last_name: "Smith",
-#     user_id: user2.id)
+nathans_profile = Profile.new(
+    first_name: "Nathan",
+    last_name: "Smith",
+    user_id: user2.id)
 
-# nathans_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_nathan.jpg'), filename: 'test_avatar_nathan.jpg', content_type: 'image/jpg')
-# nathans_profile.save
+nathans_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_nathan.jpg'), filename: 'test_avatar_nathan.jpg', content_type: 'image/jpg')
+nathans_profile.save
 
-# rays_profile = Profile.new(
-#     first_name: "Ray",
-#     last_name: "Smith",
-#     user_id: user3.id)
+rays_profile = Profile.new(
+    first_name: "Ray",
+    last_name: "Smith",
+    user_id: user3.id)
 
-# rays_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_ray.jpg'), filename: 'test_avatar_ray.jpg', content_type: 'image/jpg')
-# rays_profile.save
+rays_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_ray.jpg'), filename: 'test_avatar_ray.jpg', content_type: 'image/jpg')
+rays_profile.save
 
-# mortys_profile = Profile.new(
-#     first_name: "Morty",
-#     last_name: "Smith",
-#     user_id: user4.id)
+mortys_profile = Profile.new(
+    first_name: "Morty",
+    last_name: "Smith",
+    user_id: user4.id)
         
-# mortys_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_morty.jpg'), filename: 'test_avatar_morty.jpg', content_type: 'image/jpg')
-# mortys_profile.save
+mortys_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_morty.jpg'), filename: 'test_avatar_morty.jpg', content_type: 'image/jpg')
+mortys_profile.save
 
-# summers_profile = Profile.new(
-#     first_name: "Summer",
-#     last_name: "Smith",
-#     user_id: user5.id)
+summers_profile = Profile.new(
+    first_name: "Summer",
+    last_name: "Smith",
+    user_id: user5.id)
 
-# summers_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_summer.jpg'), filename: 'test_avatar_summer.jpg', content_type: 'image/jpg')
-# summers_profile.save
+summers_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_summer.jpg'), filename: 'test_avatar_summer.jpg', content_type: 'image/jpg')
+summers_profile.save
 
-# jerrys_profile = Profile.new(
-#     first_name: "Jerry",
-#     last_name: "Smith",
-#     user_id: user6.id)
+jerrys_profile = Profile.new(
+    first_name: "Jerry",
+    last_name: "Smith",
+    user_id: user6.id)
 
-# jerrys_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_jerry.jpg'), filename: 'test_avatar_jerry.jpg', content_type: 'image/jpg')
-# jerrys_profile.save
+jerrys_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_jerry.jpg'), filename: 'test_avatar_jerry.jpg', content_type: 'image/jpg')
+jerrys_profile.save
 
 # Lists
 
