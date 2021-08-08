@@ -46,3 +46,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
 
+# add stripe gems for subscription tier system
+gem 'stripe'
+
