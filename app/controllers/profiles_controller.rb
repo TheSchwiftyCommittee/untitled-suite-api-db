@@ -16,13 +16,20 @@ class ProfilesController < ApplicationController
 
   # POST /profiles
   def create
-    @profile = Profile.new(profile_params)
-    # Profile has attached image
-    @profile.avatar.attach(params[:avatar])
-    if @profile.save
-      render json: @profile, status: :created, location: @profile
-    else
-      render json: @profile.errors, status: :unprocessable_entity
+    @user = User.find_by(id: params[:id])
+    if decoded_token[0]["user_id"] == @user.id && @user.profile == nil
+     @profile = Profile.new(profile_params)
+     @profile.user_id = @user.id
+     #  Profile has attached image
+     @profile.avatar.attach(params[:avatar])
+     @profile.save
+      if @profile.save
+       render json: @profile, status: :created, location: @user_profile
+      else
+       render json: @profile.errors, status: :unprocessable_entity
+      end
+    else 
+     render json: {error: "You are not allowed to create more than 1 profile or create a profile for another account."}, status: :unauthorized
     end
   end
 
