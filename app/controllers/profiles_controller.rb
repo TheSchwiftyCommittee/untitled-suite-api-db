@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     @user = User.find_by(id: params[:id])
     if decoded_token[0]["user_id"] == @user.id && @user.profile == nil
      @profile = Profile.new(profile_params)
-     @profile.user_id = @user.id
+     @profile.user_id = decoded_token[0]["user_id"]
      #  Profile has attached image
      @profile.avatar.attach(params[:avatar])
      @profile.save
