@@ -2,12 +2,8 @@
 
 one:
   title: MyString
-  description: MyText
-  priority: MyString
-  completed: false
+  user: one
 
 two:
   title: MyString
-  description: MyText
-  priority: MyString
-  completed: false
+  user: two

@@ -71,7 +71,43 @@ jerrys_profile = Profile.new(
 jerrys_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_jerry.jpg'), filename: 'test_avatar_jerry.jpg', content_type: 'image/jpg')
 jerrys_profile.save
 
-# Listings/Tasks
-list_item1 = List.create(title: "Daily workout", description: "It is Leg day", priority: "Important", completed: false)
-list_item2 = List.create(title: "Clean Car", description: "Its been weeks", priority: "Semi-Important", completed: false)
-list_item3 = List.create(title: "Cook dinner", description: "Kids will be home soon", priority: "Important", completed: false)
+# Lists
+
+morty_list1 = List.new(
+    title: "School Work",
+    user_id: user4.id)
+
+morty_list2 = List.new(
+    title: "House Work",
+    user_id: user4.id)
+
+morty_list3 = List.new(
+    title: "Why I cant stand Morty",
+    user_id: user4.id)
+    
+summer_list1 = List.new(
+    title: "School Work",
+    user_id: user5.id)
+    
+summer_list2 = List.new(
+    title: "House Work",
+    user_id: user5.id)
+
+summer_list1 = List.new(
+    title: "Shopping List",
+    user_id: user5.id)
+    
+jerry_list2 = List.new(
+    title: "House Work",
+    user_id: user6.id)
+
+jerry_list1 = List.new(
+    title: "Find a Job",
+    user_id: user6.id)
+    
+jerry_list2 = List.new(
+    title: "Shopping List",
+    user_id: user6.id)
+
+
+

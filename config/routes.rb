@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
  
-
-  resources :pricings
+  resources :lists
   scope '/users' do
     resource :users, only: [:create, :login]
     post "/login", to: "users#login"
@@ -21,14 +20,9 @@ Rails.application.routes.draw do
     put"/assign_admin", to: "admin_directors#assign_admin"
     put"/unassign_admin", to: "admin_directors#unassign_admin"
   end
-  
-  resources :lists
-  resources :profiles
 
-  scope '/admin_directors' do
-  
-  end
- 
+  resources :profiles
+  resources :pricings 
 end
 
 
