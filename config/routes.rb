@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
  
-  resources :lists
   scope '/users' do
     resource :users, only: [:create, :login]
     post "/login", to: "users#login"
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :profiles
   resources :pricings 
+  resources :lists
 end
 
 

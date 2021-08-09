@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
      @profile.avatar.attach(params[:avatar])
      @profile.save
       if @profile.save
-       render json: @profile, status: :created, location: @user_profile
+       render json: @profile, status: :created, location: @profile
       else
        render json: @profile.errors, status: :unprocessable_entity
       end
@@ -57,6 +57,6 @@ class ProfilesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :avatar)
+      params.permit(:first_name, :last_name, :avatar)
     end
 end
