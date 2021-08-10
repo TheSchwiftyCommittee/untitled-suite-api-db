@@ -22,7 +22,7 @@ class AdminsController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
   end
 
   # CHECK IF USER IS ADMIN

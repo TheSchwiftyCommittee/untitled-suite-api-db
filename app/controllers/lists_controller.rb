@@ -14,7 +14,7 @@ end
 
   # GET /lists/1
   def show
-    if decoded_token[0]["user_id"] == @user.id 
+    if decoded_token[0]["user_id"] == @user.id && @list.user_id == @user.id
       render json: @list
     else
       render json: {error: "You do not have access to other user's lists."}, status: :unauthorized
