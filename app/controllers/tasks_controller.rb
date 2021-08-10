@@ -10,7 +10,7 @@ class TasksController < ApplicationController
         @tasks = @list.tasks
         render json: @tasks
       else
-        render json: {error: "That List does not exist."}, status: :unauthorized
+        render json: {error: "Tasks do not exist within any of your lists."}, status: :unauthorized
       end
     else
       render json: {error: "You do not have access to view other user's tasks."}, status: :unauthorized
@@ -66,7 +66,7 @@ class TasksController < ApplicationController
     if decoded_token[0]["user_id"] == @user.id && @list.user_id == @user.id && @list.present?
       if @task.present? && @task.list_id == @list.id
         @task.destroy
-        render json: {notice: "Task was successfully delete." }, status: :ok
+        render json: {notice: "Task was successfully deleted." }, status: :ok
       else
         render json: {error: "You do not have permission to delete other user's tasks."}, status: :unauthorized
       end
