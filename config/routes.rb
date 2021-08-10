@@ -19,10 +19,11 @@ Rails.application.routes.draw do
     put"/assign_admin", to: "admin_directors#assign_admin"
     put"/unassign_admin", to: "admin_directors#unassign_admin"
   end
-
+  
   resources :profiles
   resources :pricings 
   resources :lists
+  resources :tasks
 end
 
 

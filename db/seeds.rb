@@ -69,10 +69,38 @@ morty_list1 = List.new(
     user_id: user4.id)
 morty_list1.save
 
+morty_task1 = Task.new(
+    title: "Homework",
+    description: "Dont move till It is complete!",
+    priority: "High",
+    list_id: morty_list1.id)
+morty_task1.save
+
+morty_task2 = Task.new(
+    title: "Start my assessment task",
+    description: "Start it before half-year break",
+    priority: "High",
+    list_id: morty_list1.id)
+morty_task2.save
+
 morty_list2 = List.new(
     title: "House Work",
     user_id: user4.id)
 morty_list2.save
+
+morty_task3 = Task.new(
+    title: "Clean my room",
+    description: "Do it before the weekend",
+    priority: "Low",
+    list_id: morty_list2.id)
+morty_task3.save
+
+morty_task4 = Task.new(
+    title: "Wash my cloths",
+    description: "Do it before tonight",
+    priority: "High",
+    list_id: morty_list2.id)
+morty_task4.save
 
 morty_list3 = List.new(
     title: "Why I cant stand Morty",
@@ -88,6 +116,20 @@ summer_list1 = List.new(
     title: "School Work",
     user_id: user5.id)
 summer_list1.save
+
+summer_task1 = Task.new(
+    title: "Do maths",
+    description: "all questions before tomorrows class",
+    priority: "High",
+    list_id: summer_list1.id)
+summer_task1.save
+
+summer_task2 = Task.new(
+    title: "Study for Friday's exam",
+    description: "Cover all chpaters",
+    priority: "High",
+    list_id: summer_list1.id)
+summer_task2.save
     
 summer_list2 = List.new(
     title: "House Work",
