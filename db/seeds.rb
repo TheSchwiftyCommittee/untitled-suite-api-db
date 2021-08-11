@@ -6,14 +6,6 @@ user4 = User.create(username: "morty", email: "morty@test.com",  password: "mort
 user5 = User.create(username: "summer", email: "summer@test.com",  password: "summer123", admin: false, admin_director: false)
 user6 = User.create(username: "jerry", email: "jerry@test.com",  password: "jerry123", admin: false, admin_director: false)
 
-Pricing
-Pricing1 = Pricing.create(premium: true, user_id: 1)
-Pricing2 = Pricing.create(premium: true, user_id: 2)
-Pricing3 = Pricing.create(premium: true, user_id: 3)
-Pricing4 = Pricing.create(premium: false, user_id: 4)
-Pricing5 = Pricing.create(premium: false, user_id: 5)
-Pricing6 = Pricing.create(premium: false, user_id: 6)
-
 # Profiles
 ricks_profile = Profile.new(
     first_name: "Rick",
@@ -63,7 +55,7 @@ jerrys_profile = Profile.new(
 jerrys_profile.avatar.attach(io: File.open('app/assets/images/test_avatar_jerry.jpg'), filename: 'test_avatar_jerry.jpg', content_type: 'image/jpg')
 jerrys_profile.save
 
-# Lists
+# Lists & Tasks
 morty_list1 = List.new(
     title: "School Work",
     user_id: user4.id)
