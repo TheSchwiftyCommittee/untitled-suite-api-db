@@ -24,9 +24,9 @@ RSpec.describe User, type: :model do
     end
 
     it"is not valid with incomplete valid attributes" do
-      expect(user2).not_to be_valid
-      expect(user3).not_to be_valid
       expect(user4).not_to be_valid
+      expect(user5).not_to be_valid
+      expect(user6).not_to be_valid
    end
 end
 
