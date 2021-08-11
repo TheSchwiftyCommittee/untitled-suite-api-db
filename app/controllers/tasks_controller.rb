@@ -43,7 +43,7 @@ class TasksController < ApplicationController
           render json: @task.errors, status: :unprocessable_entity
         end
     else
-      render json: {error: "You do not have permission to create tasks"}, status: :unauthorized
+      render json: {error: "You do not have permission to create Tasks"}, status: :unauthorized
     end
   end
 
@@ -54,10 +54,10 @@ class TasksController < ApplicationController
       if @task.update(task_params) && @task.present? && @task.list_id == @list.id
         render json: {notice: "Task was successfully updated." }, status: :ok
       else
-        render json: {error: "You do not have permission to update other user's tasks."}, status: :unauthorized
+        render json: {error: "Action was unsuccessful in updating Task."}, status: :unauthorized
       end
     else 
-      render json: {error: "You do not have access to update other user's lists."}, status: :unauthorized
+      render json: {error: "You do not have access to update other user's Tasks."}, status: :unauthorized
     end
   end
 
@@ -68,10 +68,10 @@ class TasksController < ApplicationController
         @task.destroy
         render json: {notice: "Task was successfully deleted." }, status: :ok
       else
-        render json: {error: "You do not have permission to delete other user's tasks."}, status: :unauthorized
+        render json: {error: "Action was unsuccessful in updating Task."}, status: :unauthorized
       end
     else 
-      render json: {error: "You do not have access to delete other user's lists."}, status: :unauthorized
+      render json: {error: "You do not have access to delete other user's Tasks."}, status: :unauthorized
     end
   end
 

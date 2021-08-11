@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   end
   
   resources :profiles
-  resources :pricings 
   resources :lists
   resources :tasks
 end

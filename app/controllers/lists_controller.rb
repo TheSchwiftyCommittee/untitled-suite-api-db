@@ -24,14 +24,10 @@ end
   # POST /lists
   def create
     if decoded_token[0]["user_id"] == @user.id 
-      if @user.pricing.premium == false && @user.lists.length <= 4 || @user.pricing.premium == true && @user.lists.length <= 4 
-        @list = List.new(list_params)
-        @list.user_id = decoded_token[0]["user_id"]
-        @list.save
-        render json: @list, status: :created, location: @list
-      else 
-        render json: {error: "You have excceeded your List limit"}, status: :unauthorized
-      end
+      @list = List.new(list_params)
+      @list.user_id = decoded_token[0]["user_id"]
+      @list.save
+      render json: {notice: "List was successfully created." }, status: :ok
     else
       render json: {error: "You do not have permission to create lists"}, status: :unauthorized
     end
@@ -44,7 +40,7 @@ end
       if @list.update(list_params)
         render json: {notice: "List was successfully updated." }, status: :ok
       else
-        render json: {error: "You do not have permission to update other user's lists."}, status: :unauthorized
+        render json: {error: "Action was unsuccessful in updating List."}, status: :unauthorized
       end
     else 
       render json: {error: "You do not have access to update other user's lists."}, status: :unauthorized
@@ -58,7 +54,7 @@ end
       if @list.destroy
         render json: {notice: 'List was successfully deleted.'}, status: :ok
       else
-        render json: {error: "You do not have permission to destroy other user's lists."}, status: :unauthorized
+        render json: {error: "Action was unsuccessful in deleting List."}, status: :unauthorized
       end
     else 
       render json: {error: "You do not have access to destroy other user's lists."}, status: :unauthorized
