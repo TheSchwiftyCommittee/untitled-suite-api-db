@@ -1,51 +1,78 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :update, :destroy]
-
+  before_action :find_user
+  
   # GET /lists
   def index
-    @lists = List.all
-
-    render json: @lists
-  end
+    if decoded_token[0]["user_id"] == @user.id 
+      @lists = @user.lists
+      render json: @lists
+    else
+      render json: {error: "You do not have access to other user's lists."}, status: :unauthorized
+    end
+end
 
   # GET /lists/1
   def show
-    render json: @list
+    if decoded_token[0]["user_id"] == @user.id && @list.user_id == @user.id
+      render json: @list
+    else
+      render json: {error: "You do not have access to other user's lists."}, status: :unauthorized
+    end 
   end
-
+  
   # POST /lists
   def create
-    @list = List.new(list_params)
-
-    if @list.save
-      render json: @list, status: :created, location: @list
+    if decoded_token[0]["user_id"] == @user.id 
+      @list = List.new(list_params)
+      @list.user_id = decoded_token[0]["user_id"]
+      @list.save
+      render json: {notice: "List was successfully created." }, status: :ok
     else
-      render json: @list.errors, status: :unprocessable_entity
+      render json: {error: "You do not have permission to create lists"}, status: :unauthorized
     end
   end
 
   # PATCH/PUT /lists/1
   def update
-    if @list.update(list_params)
-      render json: @list
-    else
-      render json: @list.errors, status: :unprocessable_entity
+    if decoded_token[0]["user_id"] == @user.id && @list.user_id == @user.id
+      @list.update(list_params)
+      if @list.update(list_params)
+        render json: {notice: "List was successfully updated." }, status: :ok
+      else
+        render json: {error: "Action was unsuccessful in updating List."}, status: :unauthorized
+      end
+    else 
+      render json: {error: "You do not have access to update other user's lists."}, status: :unauthorized
     end
   end
 
   # DELETE /lists/1
   def destroy
-    @list.destroy
+    if decoded_token[0]["user_id"] == @user.id && @list.user_id == @user.id
+      @list.destroy
+      if @list.destroy
+        render json: {notice: 'List was successfully deleted.'}, status: :ok
+      else
+        render json: {error: "Action was unsuccessful in deleting List."}, status: :unauthorized
+      end
+    else 
+      render json: {error: "You do not have access to destroy other user's lists."}, status: :unauthorized
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_list
-      @list = List.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def list_params
-      params.require(:list).permit(:title, :description, :priority, :completed)
-    end
+  def set_list
+    @list = List.find(params[:id])
+  end
+
+  def list_params
+    params.permit(:title)
+  end
+
+  def find_user
+    @user = User.find_by(username: params[:username])
+  end
 end
+  

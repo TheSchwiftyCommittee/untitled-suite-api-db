@@ -1,60 +1,66 @@
 class AdminDirectorsController < ApplicationController
-    
-    before_action :authorized, only: [:auto_login]
-    before_action :check_admin_director, only: [:user_index , :delete_user, :delete_admin, :assign_admin, :unassign_admin]
+     
+  before_action :find_user
+  before_action :check_admin_director
+ 
+  # DISPLAY ALL USERS
+  def user_index 
+    @users = User.all
+    render json: @users
+  end
 
-    # DISPLAY ALL USERS
-    def user_index 
-        @users = User.all
-        render json: @users
-      end
-  
-    # DELETE USER
-    def delete_user
-        @user = User.find_by(email: params[:email])
-            if @user.admin == false
-                @user.destroy
-                render json: {notice: "User was successfully Deleted." }
-            else
-                render json: {notice: "Cannot delete user of admin status." }
-            end
+# DELETE USER
+  def delete_user
+    if @user.admin == false && @user.admin_director == false
+      @user.destroy
+      render json: {notice: "User was successfully Deleted." }, status: :ok
+    else
+      render json: {error: "Cannot delete user of admin status." }, status: :unauthorized
     end
-
-      # DELETE ADMIN
-      def delete_admin
-        @user = User.find_by(email: params[:email])
-            if @user.admin == true
-                @user.destroy
-                render json: {notice: "User was successfully Deleted." }
-            else
-                render json: {notice: "Cannot delete user of admin status." }
-            end
+  end
+ 
+  # DELETE ADMIN
+  def delete_admin
+    if @user.admin == true && @user.admin_director == false
+      @user.destroy
+      render json: {notice: "User was successfully Deleted." }, status: :ok
+    else
+      render json: {error: "Cannot delete user of admin status." }, status: :unauthorized
     end
-  
-    # ASSIGN USER
-    def assign_admin
-        @user = User.find_by(email: params[:email])
-        @user.admin = true
-        @user.save
-        render json: {notice: "User was successfully assgined Admin role." }
+  end
+ 
+# ASSIGN USER
+  def assign_admin
+    @user.admin = true
+    @user.save
+    @pricing = Pricing.find_by(user_id: @user.id)
+    @pricing.premium = true
+    @pricing.save
+    render json: {notice: "User was successfully assgined Admin role." }, status: :ok
+  end
+
+  # UNASSIGN USER
+  def unassign_admin
+    @user.admin = false
+    @user.save
+    @pricing = Pricing.find_by(user_id: @user.id)
+    @pricing.premium = false
+    @pricing.save
+    render json: {notice: "User was successfully unassgined Admin role." }, status: :ok
+  end
+ 
+ private
+ 
+  def find_user
+    @user = User.find_by(id: params[:user_id])
+  end
+
+  # CHECK IF USER IS ADMIN DIRECTOR
+  def check_admin_director
+    @current_user = User.find_by(username: params[:username])
+    if @current_user.admin_director == true && decoded_token[0]["user_id"] == @current_user.id 
+    else 
+    render json: {error: 'You are not allowed to access this part of the site'}, status: 401
     end
-
-        # UNASSIGN USER
-        def unassign_admin
-            @user = User.find_by(email: params[:email])
-            @user.admin = false
-            @user.save
-            render json: {notice: "User was successfully unassgined Admin role." }
-        end
-
-    private
-
-    # CHECK IF USER IS ADMIN DIRECTOR
-    def check_admin_director
-        @user = User.find_by(username: params[:username])
-            if @user.admin_director == true
-            else 
-               render json: {error: 'You are not allowed to access this part of the site'}
-            end
-    end
+  end
 end

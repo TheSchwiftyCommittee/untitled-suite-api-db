@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         token = encode_token({user_id: @user.id})
         render json: {user: @user, token: token}
       else
-        render json: {error: "Invalid username or password"}, status: 401
+        render json: {error: "Invalid username or password"}
       end
     end
 
@@ -20,6 +20,21 @@ class UsersController < ApplicationController
         render json: {notice: "User was successfully updated."}
       else
         render json: {error: "User was not updated"}, status: 401
+      end
+    end
+
+    # DELETE
+    def delete_account
+      @user = User.find_by(email: params[:email])
+      if decoded_token[0]["user_id"] == @user.id
+        @user.destroy
+        if @user.destroy
+          render json: {notice: "User was successfully deleted."}
+        else
+          render json: {error: "User was not deleted"}, status: 401
+        end
+      else 
+        render json: {error: "You are not allowed to deleted other useraccounts."}, status: :unauthorized
       end
     end
 
