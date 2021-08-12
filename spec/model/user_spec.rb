@@ -31,6 +31,11 @@ user6 = User.create(email: "kane@test.com", password: "kane123")
 # Should pass with a user failing to create an account using a email, password and username attribute.
 user7 = User.create(username: "tom", email: "tom@test.com",  password: "tom123")
 
+#Test 8
+# Should pass when a user deletes their account.
+user8 = User.create(username: "fin", email: "fin@test.com",  password: "fin123")
+find_user_8 = User.find_by(username: "fin")
+
 RSpec.describe User, type: :model do
 
   it"is a valid account with complete valid attributes" do
@@ -48,6 +53,11 @@ RSpec.describe User, type: :model do
 
   it"is not a valid account when inputed attributes have already been taken by other users." do
     expect(user7).not_to be_valid
+  end
+
+  it"account can be deleted" do
+    find_user_8.destroy
+    expect(User.find_by(username: "fin")).to be(nil)
   end
 end
 

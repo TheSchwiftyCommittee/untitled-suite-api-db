@@ -74,6 +74,23 @@ kim_profile = Profile.new(
 kim_profile.avatar.attach(io: File.open('app/assets/images/Placeholder.jpg'), filename: 'Placeholder.jpg', content_type: 'image/jpg')
 kim_profile.save
 
+#Test 7
+# Should pass with a valid user updates the profile.
+user7 = User.create(username: "james", email: "james@test.com",  password: "james123")
+find_user_7 = User.find_by(username: "#{user7.username}") 
+
+james_profile = Profile.new(
+    first_name: "James",
+    last_name: "tee",
+    user_id: find_user_7.id)
+
+james_profile.avatar.attach(io: File.open('app/assets/images/Placeholder.jpg'), filename: 'Placeholder.jpg', content_type: 'image/jpg')
+james_profile.save
+
+find_james_profile = Profile.find_by(first_name: "James")
+
+
+
 RSpec.describe Profile, type: :model do
   it"is valid with complete valid attributes" do
     expect(tom_profile).to be_valid
@@ -92,4 +109,11 @@ RSpec.describe Profile, type: :model do
   it"is not valid when last_name has more then 30 characters" do
     expect(kim_profile).not_to be_valid
   end
+
+  it 'checks that a profile can be updated' do
+    find_james_profile.update(first_name: "NoobMaster")
+    expect(Profile.find_by(first_name: "NoobMaster")).to eq(find_james_profile)
+    end
 end
+
+

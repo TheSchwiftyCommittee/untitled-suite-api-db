@@ -95,6 +95,48 @@ kelly_task2 = Task.new(
     list_id: kelly_list.id)
 kelly_task2.save
 
+#Test 5
+# Should pass with a valid user updates a list with a valid title.
+user5 = User.create(username: "tiff", email: "tiff@test.com",  password: "tiff123")
+find_user_5 = User.find_by(username: "#{user5.username}") 
+
+tiff_list = List.new(
+    title: "School Work",
+    user_id: find_user_5.id)
+tiff_list.save
+
+find_tiff_list = List.find_by(title: "School Work")
+
+tiff_task = Task.new(
+    title: "Homework",
+    description: "Dont move out of this chair till it is complete!",
+    priority: "Critial",
+    list_id: find_tiff_list.id)
+tiff_task.save
+
+find_tiff_task = Task.find_by(title: "Homework")
+
+#Test 6 
+# Should pass when a user deletes one of their tasks.
+user6 = User.create(username: "john", email: "john@test.com",  password: "john123")
+find_user_6 = User.find_by(username: "#{user6.username}") 
+
+john_list = List.new(
+    title: "School Work",
+    user_id: find_user_6.id)
+john_list.save
+
+john_task = Task.new(
+    title: "Find a book",
+    description: "Read it till I get bored",
+    priority: "Critial",
+    list_id: john_list.id)
+john_task.save
+
+find_john_task = Task.find_by(title: "Find a book")
+
+
+
 RSpec.describe Task, type: :model do
     
     it"is valid with complete valid attributes" do
@@ -102,20 +144,30 @@ RSpec.describe Task, type: :model do
     end
 
     it"is not valid with a invalid list attached" do
-        expect(tom_task2).not_to be_valid
-      end
+      expect(tom_task2).not_to be_valid
+    end
 
     it"is not valid with incomplete or missing attributes" do
-        expect(kate_task1).not_to be_valid
-        expect(kate_task2).not_to be_valid
-        expect(kate_task3).not_to be_valid
+      expect(kate_task1).not_to be_valid
+      expect(kate_task2).not_to be_valid
+      expect(kate_task3).not_to be_valid
     end
 
     it"is not valid when title has more then 30 characters" do
-        expect(kelly_task1).not_to be_valid
+      expect(kelly_task1).not_to be_valid
     end
 
     it"is not valid when description has more then 2000 characters" do
-        expect(kelly_task2).not_to be_valid
+      expect(kelly_task2).not_to be_valid
+    end
+
+    it 'checks that a task can be updated' do
+      find_tiff_task .update(title: "Do Maths")
+      expect(Task.find_by(title: "Do Maths")).to eq(find_tiff_task )
+    end
+
+    it 'checks that a task can be destroyed' do
+      find_john_task.destroy
+      expect(List.find_by(title: "Find a book")).to be(nil)
     end
 end

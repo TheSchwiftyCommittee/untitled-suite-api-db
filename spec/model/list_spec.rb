@@ -10,6 +10,7 @@ tom_list = List.new(
     user_id: find_user_1.id)
 tom_list.save
 
+
 #Test 2
 # Should pass with a valid user creates a list with a missing title.
 user2 = User.create(username: "kate", email: "kate@test.com",  password: "kate123")
@@ -35,6 +36,18 @@ sam_list = List.new(
     user_id: find_user_4.id)
 sam_list.save
 
+#Test 5
+# Should pass with a valid user updates a list with a valid title.
+user5 = User.create(username: "tiff", email: "tiff@test.com",  password: "tiff123")
+find_user_5 = User.find_by(username: "#{user5.username}") 
+
+tiff_list = List.new(
+    title: "School Work",
+    user_id: find_user_5.id)
+tiff_list.save
+
+find_tiff_list = List.find_by(title: "School Work")
+
 RSpec.describe List, type: :model do
     
     it"is valid with complete valid attributes" do
@@ -42,14 +55,21 @@ RSpec.describe List, type: :model do
     end
 
     it"is not valid with missing attributes" do
-        expect(kate_list).not_to be_valid
+      expect(kate_list).not_to be_valid
     end
 
     it"is not valid when created by invalid/non-existent user" do
-        expect(kane_list).not_to be_valid
+      expect(kane_list).not_to be_valid
     end
 
     it"is not valid when title has more then 30 characters" do
-        expect(sam_list).not_to be_valid
+      expect(sam_list).not_to be_valid
+    end
+
+    it 'checks that a list can be updated' do
+      find_tiff_list.update(title: "Clean House")
+      expect(List.find_by(title: "Clean House")).to eq(find_tiff_list)
     end
 end
+
+
