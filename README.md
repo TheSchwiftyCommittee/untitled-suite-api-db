@@ -28,3 +28,21 @@ Things you may want to cover:
 - Deployment instructions
 
 - ...
+
+## To_Do_List
+
+- BE TEsting -> me ---.> quicker
+- FE Testing -> RAy ->>>> together
+- CYpress???? -> BOth -> 5
+
+- 1 full test of the site edge - BOth
+
+- PUSH main -> BOth rep
+
+- DEPlyments -> BOth
+
+- 1 full test of the site edge - BOth -> 2 friends take notes
+
+- TRellow UPDATE -> Ray
+
+- DOCS -> Me

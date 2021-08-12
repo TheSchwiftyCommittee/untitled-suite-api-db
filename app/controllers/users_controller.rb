@@ -23,6 +23,21 @@ class UsersController < ApplicationController
       end
     end
 
+    # DELETE
+    def delete_account
+      @user = User.find_by(email: params[:email])
+      if decoded_token[0]["user_id"] == @user.id
+        @user.destroy
+        if @user.destroy
+          render json: {notice: "User was successfully deleted."}
+        else
+          render json: {error: "User was not deleted"}, status: 401
+        end
+      else 
+        render json: {error: "You are not allowed to deleted other useraccounts."}, status: :unauthorized
+      end
+    end
+
     # LOGGING IN
     def login
       @user = User.find_by(username: params[:username])

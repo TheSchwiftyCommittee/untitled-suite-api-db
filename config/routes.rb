@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post "/login", to: "users#login"
     put"/update", to: "users#update"
     get "/auto_login", to: "users#auto_login"
+    delete "/delete_account", to: "users#delete_account"
   end
   
   scope '/admins' do
