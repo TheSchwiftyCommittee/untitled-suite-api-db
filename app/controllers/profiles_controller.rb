@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT/profiles/1
   def update
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     if decoded_token[0]["user_id"] == @user.id
       @profile = Profile.find_by(user_id: @user.id)
       if @profile.update(profile_params)
