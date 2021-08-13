@@ -110,7 +110,7 @@ In your terminal, type the following command:
 
 ```r
 #Runs rails server on port 4000(default)
-rails s - 4000
+rails s -p 4000
 ```
 
 The `API back-end` should now be running on `localhost:4000`.
